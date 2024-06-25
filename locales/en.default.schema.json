@@ -390,6 +390,10 @@
           "label": "Image behavior"
         }
       },
+      "switch_toggle": {
+        "show_toggle": "Switch Toggle",
+        "show_switch_toggle": "Show / Hide Toggle"
+      },
       "padding": {
         "section_padding_heading": "Section padding",
         "padding_top": "Top padding",
@@ -2016,6 +2020,29 @@
             },
             "show_inventory_quantity": {
               "label": "Show inventory count"
+            }
+          }
+        },
+        "custom_swatch": {
+          "name": "Custom Color Swatch"
+        },
+        "strap": {
+          "name": "Add Extra Strap",
+          "settings": {
+            "strap_heading": {
+              "label": "Heading"
+            },
+            "strap_desc": {
+              "label": "Text"
+            },
+            "addon_item_1": {
+              "label": "Add Item 1"
+            },
+            "addon_item_2": {
+              "label": "Add Item 2"
+            },
+            "addon_item_3": {
+              "label": "Add Item 3"
             }
           }
         },

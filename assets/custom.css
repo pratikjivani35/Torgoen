@@ -8,6 +8,10 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+h1, h2, h3, h4, h5, .h0, .h1, .h2, .h3, .h4, .h5 {
+    font-family: "Montserrat", sans-serif !important;
+}
+
 /*========================================= COMMON CSS START  =========================================*/
 
 
@@ -64,22 +68,98 @@ product-info .page-width {
     margin-bottom: 15px;
 }
 .product .product__title h1 {
-    font-size: 50px;
-    line-height: 55px;
-    letter-spacing: 1px;
+    font-size: 46px;
+    line-height: 60px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     color: #000000;
     text-transform: uppercase;
 }
+.product .product__title-last {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+}
 .product .price .price-item.price-item--regular {
-    font-size: 50px;
+    font-size: 46px;
     line-height: 58px;
+    font-weight: 500;
     letter-spacing: 1px;
     color: #000000;
 }
+.product .price .price-item.price-item--sale {
+    font-size: 35px;
+    line-height: 35px;
+    letter-spacing: 1px;
+    color: #000000;
+}
+.product__media-list .product-media-container {
+    border: none;
+}
+.product-form__submit {
+    font-size: 18px;
+    line-height: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    min-height: 55px;
+}
+.product-block--strap .product-block--strap_heading {
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: underline;
+}
+.product-block--strap .product-block--strap_desc {
+    margin-bottom: 30px;
+}
+.product-block--strap .product-block--strap_desc p {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.4px;
+    font-weight: 400;
+    color: #000;
+}
+.product-block--strap .product-addon--block {
+    display: flex;
+    align-items: center;
+}
+.strap_modal {
+    background: #fef9f9!important;
+    height: 94%;
+    width: 75%;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0!important;
+    box-shadow: 0 0 4px 2px #0000001a;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    z-index: 9999;
+    overflow: hidden;
+}
+.product-block_custom_swatch {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+.product-block_custom_swatch .product-block_custom_swatch-item img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
 @media(min-width: 990px) {
-    .product {
-        flex-direction: row-reverse;
-    }
     .product .product__info-wrapper {
         padding: 0 4rem 0 0 !important;
     }
