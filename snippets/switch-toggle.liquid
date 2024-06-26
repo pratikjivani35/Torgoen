@@ -2,8 +2,6 @@
     <label id="_desktop_mode" class="switch">
         <input type="checkbox" id="modeToggle">
         <span class="slider"></span>
-        <span class="tool-tip">Dark Mode</span>
-        <span class="tool-tip2">Light Mode</span>
     </label>
     <style>
         .switch {
@@ -40,40 +38,30 @@
             width: 21px;
             left: 4px;
             bottom: 4px;
-            background-color: #232323;
+            background-color: #fff;
             -webkit-transition: .4s;
             transition: .4s;
             border-radius: 50%;
-            border: 1.5px solid #eee;
         }
-        .switch .tool-tip, .switch .tool-tip2 {
-            position: absolute;
-            bottom: calc(100% + -1px);
-            background: #232323;
-            line-height: 25px;
-            padding: 0 10px;
+        .switch input:checked + .slider:before {
+            -webkit-transform: translateX(21px);
+            -ms-transform: translateX(21px);
+            transform: translateX(21px);
+        }
+        body.dark-mode {
+            background: #000;
+        }
+        body.dark-mode .gradient {
+            background: transparent;
+        }
+        body.dark-mode .header .list-menu li a {
             color: #fff;
-            font-size: 10px;
-            border-radius: 0;
-            left: 50%;
-            transform: translate(-50%);
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            white-space: nowrap;
         }
-        .switch .tool-tip:before, .switch .tool-tip2:before {
-            bottom: -9px;
-            content: "";
-            position: absolute;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #232323 transparent transparent;
-            left: calc(50% - 5px);
+        body.dark-mode svg, body.dark-mode svg path {
+            fill: #fff;
         }
-        #_desktop_mode.switch .tool-tip2 {
-            opacity: 0;
-            visibility: hidden;
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6, body.dark-mode p, body.dark-mode span, body.dark-mode div {
+            color: #fff !important; 
         }
     </style>
 {% endif %}

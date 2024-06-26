@@ -147,121 +147,14 @@
                   {% if block.settings.strap_heading != blank %}
                     <div class="product-block--strap_heading">{{ block.settings.strap_heading }}</div>
                   {% endif %}
-                  <div class="strap_modal" style="display:none;">
-                    <div class="strap_modal-inner">
-                      {% if block.settings.strap_heading != blank %}
-                        <div class="product-block--strap_heading">{{ block.settings.strap_heading }}</div>
-                      {% endif %}
-                      {% if block.settings.strap_desc != blank %}
-                        <div class="product-block--strap_desc">{{ block.settings.strap_desc }}</div>
-                      {% endif %}
-                      <div class="product-addon--block">
-                        {% assign AddonItem_1 = block.settings.addon_item_1 %}
-                        {% if AddonItem_1 != blank %}
-                          <div class="addon__item">
-                            <div class="addon__item-img">
-                              <img src="{{ AddonItem_1.featured_media | img_url: 'master' }}" height="{{ AddonItem_1.featured_media.height }}" width="{{ AddonItem_1.featured_media.width }}">
-                            </div>
-                            <div class="addon__item-info">
-                              <div class="addon__item-title-last">{{ AddonItem_1.title | split: " | " | last }}</div>
-                              <div class="addon__item-title">{{ AddonItem_1.title | split: " | " | first }}</div>
-                              <div class="addon__item-price">
-                                <div class="price">{{ AddonItem_1.price | money }}</div>
-                                {% unless AddonItem_1.price == AddonItem_1.compare_at_price %}
-                                  <div class="compare-at-price">{{ AddonItem_1.compare_at_price | money }}</div>
-                                {% endunless %}
-                              </div>
-                              <div class="addon__item-ATC">
-                                <div class="addon_add-to-cart">
-                                  <span>
-                                    {%- if AddonItem_1.selected_or_first_available_variant == nil -%}
-                                      {{ 'products.product.unavailable' | t }}
-                                    {%- elsif AddonItem_1.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                                      {{ 'products.product.sold_out' | t }}
-                                    {%- else -%}
-                                      {{ 'products.product.add_to_cart' | t }}
-                                    {%- endif -%}
-                                  </span>
-                                  {%- render 'loading-spinner' -%}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        {% endif %}
-                        {% assign AddonItem_2 = block.settings.addon_item_2 %}
-                        {% if AddonItem_1 != blank %}
-                          <div class="addon__item">
-                            <div class="addon__item-img">
-                              <img src="{{ AddonItem_2.featured_media | img_url: 'master' }}" height="{{ AddonItem_2.featured_media.height }}" width="{{ AddonItem_2.featured_media.width }}">
-                            </div>
-                            <div class="addon__item-info">
-                              <div class="addon__item-title-last">{{ AddonItem_2.title | split: " | " | last }}</div>
-                              <div class="addon__item-title">{{ AddonItem_2.title | split: " | " | first }}</div>
-                              <div class="addon__item-price">
-                                <div class="price">{{ AddonItem_2.price | money }}</div>
-                                {% unless AddonItem_2.price == AddonItem_2.compare_at_price %}
-                                  <div class="compare-at-price">{{ AddonItem_2.compare_at_price | money }}</div>
-                                {% endunless %}
-                              </div>
-                              <div class="addon__item-ATC">
-                                <div class="addon_add-to-cart">
-                                  <span>
-                                    {%- if AddonItem_2.selected_or_first_available_variant == nil -%}
-                                      {{ 'products.product.unavailable' | t }}
-                                    {%- elsif AddonItem_2.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                                      {{ 'products.product.sold_out' | t }}
-                                    {%- else -%}
-                                      {{ 'products.product.add_to_cart' | t }}
-                                    {%- endif -%}
-                                  </span>
-                                  {%- render 'loading-spinner' -%}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        {% endif %}
-                        {% assign AddonItem_3 = block.settings.addon_item_3 %}
-                        {% if AddonItem_1 != blank %}
-                          <div class="addon__item">
-                            {% assign AddonItem_3 = block.settings.addon_item_3 %}
-                            <div class="addon__item-img">
-                              <img src="{{ AddonItem_3.featured_media | img_url: 'master' }}" height="{{ AddonItem_3.featured_media.height }}" width="{{ AddonItem_3.featured_media.width }}">
-                            </div>
-                            <div class="addon__item-info">
-                              <div class="addon__item-title-last">{{ AddonItem_3.title | split: " | " | last }}</div>
-                              <div class="addon__item-title">{{ AddonItem_3.title | split: " | " | first }}</div>
-                              <div class="addon__item-price">
-                                <div class="price">{{ AddonItem_3.price | money }}</div>
-                                {% unless AddonItem_3.price == AddonItem_3.compare_at_price %}
-                                  <div class="compare-at-price">{{ AddonItem_3.compare_at_price | money }}</div>
-                                {% endunless %}
-                              </div>
-                              <div class="addon__item-ATC">
-                                <div class="addon_add-to-cart">
-                                  <span>
-                                    {%- if AddonItem_3.selected_or_first_available_variant == nil -%}
-                                      {{ 'products.product.unavailable' | t }}
-                                    {%- elsif AddonItem_3.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                                      {{ 'products.product.sold_out' | t }}
-                                    {%- else -%}
-                                      {{ 'products.product.add_to_cart' | t }}
-                                    {%- endif -%}
-                                  </span>
-                                  {%- render 'loading-spinner' -%}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        {% endif %}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="strap_modal_overlay"></div>
                 </div>
               {%- when 'custom_swatch' -%}
                 <div class="product-block_custom_swatch">
+                  {% assign path_parts = request.path | split: '/' %}
+                  {% assign product_handle = path_parts.last %}
                   {% for swatch in product.metafields.custom.color_swatch.value %}
-                    <a class="product-block_custom_swatch-item" href="{{ swatch.product_item.value["handle"] }}">
+                    {% assign swatchURL = swatch.product_item.value["handle"] %}
+                    <a class="product-block_custom_swatch-item {% if swatchURL == product_handle %}active{% endif %}" href="{{ swatchURL }}">
                       <img src="{{ swatch.swatch_image | img_url: 'master' }}" height="" width="">
                     </a>
                   {% endfor %}
@@ -790,6 +683,123 @@
           </a>
         </section>
       </div>
+      {% for block in section.blocks %}
+        {% if block.settings.strap_heading != blank %}
+          <div class="strap_modal" style="display:none;">
+            <div class="close">
+              x
+            </div>
+            <div class="strap_modal-inner">
+              {% if block.settings.strap_heading != blank %}
+                <div class="product-block--strap_heading">{{ block.settings.strap_heading }}</div>
+              {% endif %}
+              {% if block.settings.strap_desc != blank %}
+                <div class="product-block--strap_desc">{{ block.settings.strap_desc }}</div>
+              {% endif %}
+              <div class="product-addon--block">
+                {% assign AddonItem_1 = block.settings.addon_item_1 %}
+                {% if AddonItem_1 != blank %}
+                  <div class="addon__item">
+                    <div class="addon__item-img">
+                      <img src="{{ AddonItem_1.featured_media | img_url: 'master' }}" height="{{ AddonItem_1.featured_media.height }}" width="{{ AddonItem_1.featured_media.width }}">
+                    </div>
+                    <div class="addon__item-info">
+                      <div class="addon__item-title-last">{{ AddonItem_1.title | split: " | " | last }}</div>
+                      <div class="addon__item-title">{{ AddonItem_1.title | split: " | " | first }}</div>
+                      <div class="addon__item-price">
+                        <div class="price">{{ AddonItem_1.price | money }}</div>
+                        {% unless AddonItem_1.price == AddonItem_1.compare_at_price %}
+                          <div class="compare-at-price">{{ AddonItem_1.compare_at_price | money }}</div>
+                        {% endunless %}
+                      </div>
+                      <div class="addon__item-ATC">
+                        <div class="addon_add-to-cart">
+                          <span>
+                            {%- if AddonItem_1.selected_or_first_available_variant == nil -%}
+                              {{ 'products.product.unavailable' | t }}
+                            {%- elsif AddonItem_1.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                              {{ 'products.product.sold_out' | t }}
+                            {%- else -%}
+                              {{ 'products.product.add_to_cart' | t }}
+                            {%- endif -%}
+                          </span>
+                          {%- render 'loading-spinner' -%}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% assign AddonItem_2 = block.settings.addon_item_2 %}
+                {% if AddonItem_1 != blank %}
+                  <div class="addon__item">
+                    <div class="addon__item-img">
+                      <img src="{{ AddonItem_2.featured_media | img_url: 'master' }}" height="{{ AddonItem_2.featured_media.height }}" width="{{ AddonItem_2.featured_media.width }}">
+                    </div>
+                    <div class="addon__item-info">
+                      <div class="addon__item-title-last">{{ AddonItem_2.title | split: " | " | last }}</div>
+                      <div class="addon__item-title">{{ AddonItem_2.title | split: " | " | first }}</div>
+                      <div class="addon__item-price">
+                        <div class="price">{{ AddonItem_2.price | money }}</div>
+                        {% unless AddonItem_2.price == AddonItem_2.compare_at_price %}
+                          <div class="compare-at-price">{{ AddonItem_2.compare_at_price | money }}</div>
+                        {% endunless %}
+                      </div>
+                      <div class="addon__item-ATC">
+                        <div class="addon_add-to-cart">
+                          <span>
+                            {%- if AddonItem_2.selected_or_first_available_variant == nil -%}
+                              {{ 'products.product.unavailable' | t }}
+                            {%- elsif AddonItem_2.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                              {{ 'products.product.sold_out' | t }}
+                            {%- else -%}
+                              {{ 'products.product.add_to_cart' | t }}
+                            {%- endif -%}
+                          </span>
+                          {%- render 'loading-spinner' -%}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% assign AddonItem_3 = block.settings.addon_item_3 %}
+                {% if AddonItem_1 != blank %}
+                  <div class="addon__item">
+                    {% assign AddonItem_3 = block.settings.addon_item_3 %}
+                    <div class="addon__item-img">
+                      <img src="{{ AddonItem_3.featured_media | img_url: 'master' }}" height="{{ AddonItem_3.featured_media.height }}" width="{{ AddonItem_3.featured_media.width }}">
+                    </div>
+                    <div class="addon__item-info">
+                      <div class="addon__item-title-last">{{ AddonItem_3.title | split: " | " | last }}</div>
+                      <div class="addon__item-title">{{ AddonItem_3.title | split: " | " | first }}</div>
+                      <div class="addon__item-price">
+                        <div class="price">{{ AddonItem_3.price | money }}</div>
+                        {% unless AddonItem_3.price == AddonItem_3.compare_at_price %}
+                          <div class="compare-at-price">{{ AddonItem_3.compare_at_price | money }}</div>
+                        {% endunless %}
+                      </div>
+                      <div class="addon__item-ATC">
+                        <div class="addon_add-to-cart">
+                          <span>
+                            {%- if AddonItem_3.selected_or_first_available_variant == nil -%}
+                              {{ 'products.product.unavailable' | t }}
+                            {%- elsif AddonItem_3.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                              {{ 'products.product.sold_out' | t }}
+                            {%- else -%}
+                              {{ 'products.product.add_to_cart' | t }}
+                            {%- endif -%}
+                          </span>
+                          {%- render 'loading-spinner' -%}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="strap_modal_overlay"></div>
+        {% endif %}
+      {% endfor %}
     </div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
