@@ -153,22 +153,20 @@
                         {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {%- endif -%}
                     </div>
-                {%- endcase -%}
-              </div>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-
-        <div
+                  {%- when 'newsletter' -%}
+                  <div
           class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
           {% endif %}
         >
-          {%- if section.settings.newsletter_enable -%}
+          {%- if block.settings.newsletter_enable -%}
             <div class="footer-block__newsletter">
-              {%- if section.settings.newsletter_heading != blank -%}
-                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+              {%- if block.settings.newsletter_heading != blank -%}
+                <h2 class="footer-block__heading inline-richtext">{{ block.settings.newsletter_heading }}</h2>
+              {%- endif -%}
+              {%- if settings.brand_description != blank -%}
+                <div class="rte">{{ settings.brand_description }}</div>
               {%- endif -%}
               {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
                 <input type="hidden" name="contact[tags]" value="newsletter">
@@ -240,6 +238,13 @@
             {%- render 'social-icons', class: 'footer__list-social' -%}
           {%- endif -%}
         </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        
       </div>
     {%- endunless -%}
   {%- endif -%}
@@ -342,6 +347,29 @@
       ]
     },
     {
+      "type": "newsletter",
+      "name": "newsletter",
+      "settings": [
+       {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "t:sections.footer.settings.newsletter_heading.default",
+      "label": "t:sections.footer.settings.newsletter_heading.label"
+    }
+      ]
+    },
+    {
       "type": "brand_information",
       "name": "t:sections.footer.blocks.brand_information.name",
       "settings": [
@@ -429,23 +457,7 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-    {
-      "type": "header",
-      "content": "t:sections.footer.settings.header__1.content",
-      "info": "t:sections.footer.settings.header__1.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "newsletter_enable",
-      "default": true,
-      "label": "t:sections.footer.settings.newsletter_enable.label"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "newsletter_heading",
-      "default": "t:sections.footer.settings.newsletter_heading.default",
-      "label": "t:sections.footer.settings.newsletter_heading.label"
-    },
+    
     {
       "type": "header",
       "content": "t:sections.footer.settings.header__9.content",

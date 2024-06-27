@@ -145,7 +145,11 @@
               {%- when 'strap' -%}
                 <div class="product-block--strap">
                   {% if block.settings.strap_heading != blank %}
-                    <div class="product-block--strap_heading">{{ block.settings.strap_heading }}</div>
+                    <div class="product-block--strap_heading">
+                      {% if block.settings.strap_link != blank %}<a href="{{ block.settings.strap_link }}">{% endif %}
+                        {{ block.settings.strap_heading }}
+                      {% if block.settings.strap_link != blank %}</a>{% endif %}
+                    </div>
                   {% endif %}
                 </div>
               {%- when 'custom_swatch' -%}
@@ -707,10 +711,10 @@
                       <div class="addon__item-title-last">{{ AddonItem_1.title | split: " | " | last }}</div>
                       <div class="addon__item-title">{{ AddonItem_1.title | split: " | " | first }}</div>
                       <div class="addon__item-price">
-                        <div class="price">{{ AddonItem_1.price | money }}</div>
                         {% unless AddonItem_1.price == AddonItem_1.compare_at_price %}
-                          <div class="compare-at-price">{{ AddonItem_1.compare_at_price | money }}</div>
+                          <div class="compare-at-price">{{ AddonItem_1.compare_at_price | money_without_trailing_zeros }}</div>
                         {% endunless %}
+                        <div class="price">+{{ AddonItem_1.price | money_without_trailing_zeros }}</div>
                       </div>
                       <div class="addon__item-ATC">
                         <div class="addon_add-to-cart">
@@ -739,10 +743,10 @@
                       <div class="addon__item-title-last">{{ AddonItem_2.title | split: " | " | last }}</div>
                       <div class="addon__item-title">{{ AddonItem_2.title | split: " | " | first }}</div>
                       <div class="addon__item-price">
-                        <div class="price">{{ AddonItem_2.price | money }}</div>
                         {% unless AddonItem_2.price == AddonItem_2.compare_at_price %}
-                          <div class="compare-at-price">{{ AddonItem_2.compare_at_price | money }}</div>
+                          <div class="compare-at-price">{{ AddonItem_2.compare_at_price | money_without_trailing_zeros }}</div>
                         {% endunless %}
+                        <div class="price">+{{ AddonItem_2.price | money_without_trailing_zeros }}</div>
                       </div>
                       <div class="addon__item-ATC">
                         <div class="addon_add-to-cart">
@@ -772,10 +776,10 @@
                       <div class="addon__item-title-last">{{ AddonItem_3.title | split: " | " | last }}</div>
                       <div class="addon__item-title">{{ AddonItem_3.title | split: " | " | first }}</div>
                       <div class="addon__item-price">
-                        <div class="price">{{ AddonItem_3.price | money }}</div>
                         {% unless AddonItem_3.price == AddonItem_3.compare_at_price %}
-                          <div class="compare-at-price">{{ AddonItem_3.compare_at_price | money }}</div>
+                          <div class="compare-at-price">{{ AddonItem_3.compare_at_price | money_without_trailing_zeros }}</div>
                         {% endunless %}
+                        <div class="price">+{{ AddonItem_3.price | money_without_trailing_zeros }}</div>
                       </div>
                       <div class="addon__item-ATC">
                         <div class="addon_add-to-cart">
@@ -915,7 +919,6 @@
     {
       "type": "strap",
       "name": "t:sections.main-product.blocks.strap.name",
-      "limit": 1,
       "settings": [
         {
           "type": "text",
@@ -926,6 +929,11 @@
           "type": "richtext",
           "id": "strap_desc",
           "label": "t:sections.main-product.blocks.strap.settings.strap_desc.label"
+        },
+        {
+          "type": "url",
+          "id": "strap_link",
+          "label": "t:sections.main-product.blocks.strap.settings.strap_link.label"
         },
         {
           "type": "product",
